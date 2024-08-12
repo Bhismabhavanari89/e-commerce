@@ -1,42 +1,61 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.signup , .login{
+    text-align: start;
+    width: 400px;
+    margin: auto;
 }
-
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+    text-align: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.logo img{
+    height: 150px !important;
+    width: auto !important;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.signup form , .login form{
+    margin: 10px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-fields{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.input-fields label{
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 3px;
+    padding-bottom: 3px;
+}
+.input-fields input{
+    height: 20px;
+    padding: 2px 5px;
+    border: 1px solid #000;
+    border-radius: 6px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.input-fields p{
+    color: red;
+    margin: 1px 5px;
+}
+.login-click{
+    font-size: 17px;
+    padding: 2px 3px;
+    margin-top: 4px;
+}
+.register{
+    width: 100%;
+    margin-top: 17px;
+    height: 31px;
+    background: #d3c2d9;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media (max-width:768px) {
+    .signup , .login{
+        text-align: start;
+        width: 100%;
+        margin: auto;
+    }
 }
