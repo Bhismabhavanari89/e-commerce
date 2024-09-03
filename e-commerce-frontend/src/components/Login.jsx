@@ -1,12 +1,45 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.webp'
 import { useForm } from 'react-hook-form';
 import { Link} from 'react-router-dom';
 
 function Login(){
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const [isVisible, setIsVisible] = useState(false);
+    const [isVisibleinvalid, setIsVisibleinvalid] = useState(false);
+    const navigate = useNavigate();
     const onSubmit = (data) => {
-        console.log(data);
+        let userdetails = {
+            mobileNumber:data.mobile,
+            password:data.password
+        }
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(userdetails),
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/login", requestOptions)
+        .then(response => response.text())
+        .then(result =>{
+            result = JSON.parse(result);
+            if(result.message == "success"){  
+                navigate('/');
+            }
+            else if(result.message == "Invalid credentials"){
+                setIsVisible(false);
+                setIsVisibleinvalid(true);
+            }
+            else{
+                setIsVisibleinvalid(false);
+                setIsVisible(true);
+            }
+        })
+        .catch(error => console.log('error', error));
     };
 
     const style = {
@@ -19,6 +52,12 @@ function Login(){
             <link rel="preload" href={logo} as="image" />
             <div className="logo">
                 <img src={logo} alt="logo" title="logo" fetchpriority="high" width="100%" height="100%"/>
+            </div>
+            <div className='user-exixts' style={{ display: isVisible ? 'block' : 'none' }}>
+                <p>User Not Exists Please SignUp</p>
+            </div>
+            <div className='user-exixts' style={{ display: isVisibleinvalid ? 'block' : 'none' }}>
+                <p>Invalid credentials</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1>Login</h1>

@@ -1,11 +1,40 @@
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.webp'
 import { useForm } from 'react-hook-form';
 import { Link} from 'react-router-dom';
 function Signup(){
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const [isVisible, setIsVisible] = useState(false);
+    const navigate = useNavigate();
     const onSubmit = (data) => {
-        console.log(data);
+        let userdetails = {
+            mobileNumber:data.mobile,
+            name:data.name,
+            password:data.password
+        }
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(userdetails),
+            redirect: 'follow'
+        };
+
+        fetch("http://localhost:8080/signup", requestOptions)
+        .then(response => response.text())
+        .then(result =>{
+            result = JSON.parse(result);
+            if(result.message == "User details saved"){  
+                navigate('/login');
+            }
+            else{
+                setIsVisible(true);
+            }
+        })
+        .catch(error => console.log('error', error));
+
     };
 
     const style = {
@@ -18,6 +47,9 @@ function Signup(){
         <div className="signup">
             <div className="logo">
                 <img src={logo} alt="logo" title='logo' style={style}/>
+            </div>
+            <div className='user-exixts' style={{ display: isVisible ? 'block' : 'none' }}>
+                <p>User Exists Please Login</p>
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <h1>Create Account</h1>

@@ -51,6 +51,14 @@
     border-radius: 10px;
     cursor: pointer;
 }
+.user-exixts{
+    background-color: lightskyblue;
+    padding: 3px 2px;
+    text-align: center;
+    color: red;
+    font-size: 21px;
+    font-family: monospace;
+}
 
 @media (max-width:768px) {
     .signup , .login{
