@@ -29,6 +29,7 @@ function Login(){
             result = JSON.parse(result);
             if(result.message == "success"){  
                 navigate('/');
+                sessionStorage.setItem("mobileNumber",userdetails.mobileNumber);
             }
             else if(result.message == "Invalid credentials"){
                 setIsVisible(false);

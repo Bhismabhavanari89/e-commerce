@@ -1,0 +1,47 @@
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: springgreen;
+}
+.left{
+    width: 6%;
+    margin: 2px 49px;
+}
+.right{
+    column-gap: 25px;
+    display: flex;
+    font-size: 20px;
+    margin-right: 37px;
+}
+.middle{
+    display: flex;
+    flex: auto;
+    border-radius: 2px;
+    justify-content: center;
+    column-gap: 32px;
+    font-size: 28px;
+}
+.middle a{
+    color: black;
+}
+.header-container{
+    padding: 10px;
+    display: none;
+}
+.elec-inner{
+    display: grid;
+    font-size: 18px;
+    row-gap: 13px;
+    padding: 6px 30px;
+    width: auto;
+}
+.electronics{
+    position: absolute;
+    margin-left: -33px;
+    background-color: #FFF;
+}
+li{
+    text-decoration: none;
+}
+
